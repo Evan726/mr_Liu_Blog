@@ -14,12 +14,18 @@
                 <el-col :span="8">
                     <div class="flex user_info">
                         <ul class="flex head_icon_box">
+                            <li class="flex">
+                                    <span>评论</span>
+                                    <el-badge class="mark" :value="12" />
+                            </li>
+                            <li><i class="el-icon-menu"></i></li>
+                            <li><i class="el-icon-menu"></i></li>
                             <li><i class="el-icon-menu"></i></li>
                             <li>
                                 <el-dropdown>
                                     <span class="el-dropdown-link">
-									    {{name}}<i class="el-icon-arrow-down el-icon--right"></i>
-									</span>
+                                        {{name}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                    </span>
                                     <el-dropdown-menu slot="dropdown">
                                         <el-dropdown-item>基本信息</el-dropdown-item>
                                         <el-dropdown-item>修改密码</el-dropdown-item>
