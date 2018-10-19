@@ -1,10 +1,12 @@
 <template>
     <el-container>
         <el-header height='50'>
-			<layout-header></layout-header>
+            <layout-header @call="sideCall"></layout-header>
         </el-header>
         <el-container>
-            <el-aside width="200px">Aside</el-aside>
+            <el-aside :width="sideWidth+'px'">
+                <layout-side :isCollapse="sideWidth!==200"></layout-side>
+            </el-aside>
             <el-main>
                 <div class="bread">
                     <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -21,13 +23,24 @@
 </template>
 <script>
 import LayoutHeader from "./components/LayoutHeader.vue"
+import LayoutSide from "./components/LayoutSide.vue"
 export default {
     data() {
         return {
+            sideWidth: 200,
             msg: 'Welcome to Your Vue.js App'
         }
     },
-    components:{LayoutHeader}
+    components: { LayoutHeader, LayoutSide },
+    methods: {
+        sideCall() {
+            if (this.sideWidth === 200) {
+                this.sideWidth = 65
+            } else {
+                this.sideWidth = 200
+            }
+        }
+    }
 }
 
 </script>
