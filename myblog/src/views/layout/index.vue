@@ -5,7 +5,7 @@
         </el-header>
         <el-container class="main" :style='{height: clientHeight + "px"}'>
             <el-aside :width="sideWidth+'px'">
-                <layout-side :isCollapse="sideWidth!==200"></layout-side>
+                <layout-side :isCollapse="sideWidth!==200" :clientHeight="clientHeight"></layout-side>
             </el-aside>
             <el-main>
                 <div class="bread">
@@ -29,19 +29,19 @@ export default {
         return {
             sideWidth: 200,
             clientHeight:500,
-            msg: 'Welcome to Your Vue.js App'
         }
     },
     components: { LayoutHeader, LayoutSide },
     mounted() {
+        console.log('-----------this.$route:', this.$route)
         var clientHeight = document.body.clientHeight - 50
         this.clientHeight = clientHeight
-        this.$store.dispatch("clientHeight",clientHeight)
+        this.$store.commit("clientHeight",clientHeight)
         //监听window的resize事件．在浏览器窗口变化时再设置下页面显示区域的高度．1111
         window.onresize = () => {
             var clientHeight = document.body.clientHeight - 50
             this.clientHeight = clientHeight
-            this.$store.dispatch("clientHeight",clientHeight)
+            this.$store.commit("clientHeight",clientHeight)
         }
     },
     methods: {
@@ -59,8 +59,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main {
-    background: #000;
-    height: 300PX;
     overflow-y: auto;
 }
 

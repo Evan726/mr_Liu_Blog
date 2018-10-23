@@ -1,5 +1,5 @@
 <template>
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" background-color="#20222A" text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="false">
+    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" background-color="#20222A" text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="false" :style="{height: clientHeight + 'px'}">
         <el-submenu index="1">
             <template slot="title">
                 <i class="el-icon-location"></i>
@@ -43,6 +43,9 @@ export default {
     props: {
         isCollapse: {
             type: Boolean
+        },
+        clientHeight:{
+            type:Number
         }
     },
     methods: {
@@ -58,9 +61,10 @@ export default {
 
 </script>
 <style>
-/*.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+.el-menu-vertical-demo:not(.el-menu--collapse) {
     min-height: 400px;
-}*/
+    overflow-y:auto; 
+    overflow-x:hidden; 
+}
 
 </style>

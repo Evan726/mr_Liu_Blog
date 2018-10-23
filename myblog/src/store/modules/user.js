@@ -1,5 +1,5 @@
-import { loginByUsername } from '@/api/login'
-// import { getToken, setToken, removeToken } from '@/utils/auth'
+import { loginByUsername, getUserInfo, logout } from '@/api/login'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
     state: {
@@ -29,21 +29,49 @@ const user = {
     },
 
     actions: {
+        // 用户名登录
         LoginByUsername({ commit }, userInfo) {
-            console.log('userInfo', userInfo)
             return new Promise((resolve, reject) => {
                 loginByUsername(userInfo)
                     .then(response => {
                         const data = response.data
                         commit('SET_TOKEN', data.token)
-                        commit('SET_INTRODUNCTION', data.introduction)
-                        commit('SET_AVATAR', data.avatar)
-                        commit('SET_ROLES', data.roles)
-                        commit('SET_NAME', data.name)
+                        setToken(response.data.token)
                         resolve()
                     }).catch(error => {
                         reject(error)
                     })
+            })
+        },
+        //获取登录信息
+        GetUserInfo({ commit, state }, token) {
+            return new Promise((resolve, reject) => {
+                getUserInfo(token).then(response => {
+                    if (!response.data) { // 由于mockjs 不支持自定义状态码只能这样hack
+                        reject('error')
+                    }
+                    const data = response.data
+                    commit('SET_ROLES', data.roles)
+                    commit('SET_NAME', data.name)
+                    commit('SET_AVATAR', data.avatar)
+                    commit('SET_INTRODUNCTION', data.introduction)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error)
+                })
+            })
+        },
+        //退出登陆
+        logout({ commit, state }) {
+            return new Promise((resolve, reject) => {
+                logout().then(response => {
+                    commit('SET_TOKEN', '')
+                    commit('SET_ROLES', [])
+                    removeToken()
+                    resolve()
+                }).catch(error => {
+                    reject()
+                })
             })
         }
     }
