@@ -17,18 +17,18 @@ export const constantRouterMap = [{
         component: _import('errorPage/index'),
         hidden: true
     },
-    {
-        path: '',
-        name: 'layout',
-        component: Layout,
-        redirect: "/index",
-        children: [{
-            path: 'index',
-            name: 'Home',
-            component: _import('home/index'),
-            meta: { title: '首页', icon: 'home' }
-        }]
-    },
+    // {
+    //     path: '',
+    //     name: 'layout',
+    //     component: Layout,
+    //     redirect: "/index",
+    //     children: [{
+    //         path: 'index',
+    //         name: 'Home',
+    //         component: _import('home/index'),
+    //         meta: { title: '首页', icon: 'home' }
+    //     }]
+    // },
 ]
 export default new Router({
     routes: constantRouterMap
@@ -38,9 +38,9 @@ export default new Router({
 export const asyncRouterMap = [{
     path: '/icon',
     component: Layout,
-    redirect: "/icon/index",
+    redirect: "/icon",
     children: [{
-        path: 'index',
+        path: '',
         component: _import('svg-icons/index'),
         name: 'icons',
         meta: { title: 'icons', icon: 'icon', noCache: true }

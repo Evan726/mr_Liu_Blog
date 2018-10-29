@@ -5,6 +5,8 @@ const getters = {
     introduction: state => state.user.introduction,
     status: state => state.user.status,
     roles: state => state.user.roles,
+    menuData: state => state.router_url.menuData,
+    addRouters: state => state.router_url.addRouters,
     // sidebar: state => state.app.sidebar,
     // language: state => state.app.language,
     // visitedViews: state => state.tagsView.visitedViews,
@@ -16,7 +18,7 @@ const getters = {
     // status: state => state.user.status,
     // roles: state => state.user.roles,
     // setting: state => state.user.setting,
-    _routers: state => state.router_url.routers,
+
     // addRouters: state => state.permission.addRouters,
     // errorLogs: state => state.errorLog.logs
 }

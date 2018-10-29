@@ -33,7 +33,7 @@ export default {
     },
     components: { LayoutHeader, LayoutSide },
     mounted() {
-        console.log('-----------this.$route:', this.$route)
+        //console.log('-----------this.$route:', this.$route)
         var clientHeight = document.body.clientHeight - 50
         this.clientHeight = clientHeight
         this.$store.commit("clientHeight",clientHeight)

@@ -51,7 +51,6 @@ const user = {
                         reject('error')
                     }
                     const data = response.data
-                    commit('SET_ROLES', data.roles)
                     commit('SET_NAME', data.name)
                     commit('SET_AVATAR', data.avatar)
                     commit('SET_INTRODUNCTION', data.introduction)
@@ -66,7 +65,7 @@ const user = {
             return new Promise((resolve, reject) => {
                 logout().then(response => {
                     commit('SET_TOKEN', '')
-                    commit('SET_ROLES', [])
+                    commit('SET_NAME', '')
                     removeToken()
                     resolve()
                 }).catch(error => {

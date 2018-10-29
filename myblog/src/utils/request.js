@@ -20,7 +20,7 @@ service.interceptors.request.use(function(config) {
 
 // 添加一个响应拦截器
 service.interceptors.response.use(function(response) {
-    console.log('response',response)
+    //console.log('response',response)
     return response;
 }, function(error) {
     return Promise.reject(error);
