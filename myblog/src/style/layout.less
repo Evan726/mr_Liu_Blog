@@ -1,4 +1,4 @@
-.el-header {
+#app .el-header {
     background-color: #fff;
     color: #333;
     padding: 0;
@@ -7,16 +7,25 @@
     border-bottom: 1px solid #f2f2f2
 }
 
-.header_box {
+#app .header_box {
     .logo {
-        flex-basis: 200px;
-        height: 50px;
+        flex-basis: 180px;
+        height: 36px;
+        padding:12px 10px;
     }
+    .logos {
+        flex-basis: 42px;
+        overflow: hidden;
+        height: 36px;
+        padding:12px 11px;
+    }
+    
 
     .header_main {
         flex: 1;
         height: 50px;
         border-left: 1px solid #f2f2f2;
+        font-size:16px;
     }
 
     .user_info {
@@ -25,11 +34,13 @@
 
     .head_icon_box {
         line-height: 50px;
+
         li {
             padding: 0 20px;
             border-right: 1px solid #f2f2f2;
-            span{
-                font-size:14px;
+
+            span {
+                font-size: 14px;
             }
         }
 
@@ -38,15 +49,15 @@
 
 
 
-.el-aside {
+#app .el-aside {
     color: #fff;
 }
 
-.el-menu {
+#app .el-menu {
     border-right: none
 }
 
-.el-main {
+#app .el-main {
     padding: 0;
     color: #333;
 }

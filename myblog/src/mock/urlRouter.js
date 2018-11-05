@@ -27,6 +27,14 @@ const routerMap = [{
         Route: "tinymce",
         children: null
     }, {
+        File: "components/drawer",
+        Icon: "drawer",
+        IsView: true,
+        Name: "抽屉",
+        OrderIndex: 0,
+        Route: "drawer",
+        children: null
+    },  {
         File: "components/avatarUpload",
         Icon: "avatar",
         IsView: true,
@@ -35,7 +43,7 @@ const routerMap = [{
         Route: "avatar-upload",
         children: null
     }, {
-        File: "components/form/group",
+        File: "",
         Icon: "form",
         IsView: true,
         Name: "表单",

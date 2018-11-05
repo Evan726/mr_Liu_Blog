@@ -6,9 +6,11 @@ import Layout from '@/views/layout'
 /**
  * 格式化动态加载的路由
  * @param  {[type]} router [路由数据]
+ * @param  {[type]} parentLayout [自定义的空页面]
  * @return {[type]}        [返回格式为标准vue-router 数据格式]
  */
-function farmatRouter(router) {
+
+function farmatRouter(router, parentLayout) {
     var addRouters = [];
     for (var i = 0; i < router.length; i++) {
         if (!router[i].children) {
@@ -17,50 +19,42 @@ function farmatRouter(router) {
                 path: '',
                 component: _import(router[i].File),
                 name: router[i].Name,
-                meta: {
-                    title: router[i].Name,
-                    icon: router[i].icon,
-                }
             })
             addRouters.push({
                 path: router[i].Route,
-                component: Layout,
-                redirect: router[i].Route,
-                meta: {
-                    title: router[i].Name,
-                    icon: router[i].icon,
-                },
-                children: children
+                name: router[i].Name,
+                component: parentLayout ? _import(router[i].File) : Layout,
+                children: parentLayout ? null : children
             })
         } else {
             var children = []
             var child = router[i].children
             for (var j = 0; j < child.length; j++) {
-                children.push({
-                    path: child[j].Route,
-                    component: _import(child[j].File),
-                    name: child[j].Name,
-                    meta: {
-                        title: child[j].Name,
-                        icon: child[j].icon,
-                    },
-                    children: child[j].children ? farmatRouter(child[j].children) : null
-                })
+                if (child[j].children) {
+                    children.push({
+                        path: child[j].Route,
+                        component: _import('Index'),
+                        redirect: child[j].Route + "/" + child[j].children[0].Route,
+                        children: farmatRouter(child[j].children, _import('Index')),
+                    })
+                } else {
+                    children.push({
+                        path: child[j].Route,
+                        component: _import(child[j].File),
+                        children: null
+                    })
+                }
             }
             addRouters.push({
                 path: router[i].Route,
-                component: Layout,
+                component: parentLayout || Layout,
                 redirect: router[i].Route + "/" + child[0].Route,
-                meta: {
-
-                },
                 children: children
             })
         }
     }
     return addRouters;
 }
-
 
 /**
  * 格式化菜单
@@ -75,12 +69,14 @@ function farmetMenu(router, parentPath) {
             menu.push({
                 path: parentPath ? parentPath + "/" + router[i].Route : router[i].Route,
                 Name: router[i].Name,
+                Icon: router[i].Icon,
                 children: []
             })
         } else {
             menu.push({
                 path: router[i].Route,
                 Name: router[i].Name,
+                Icon: router[i].Icon,
                 children: farmetMenu(router[i].children, router[i].Route)
             })
         }

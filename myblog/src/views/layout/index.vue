@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-header height='50'>
-            <layout-header @call="sideCall"></layout-header>
+            <layout-header @call="sideCall" :isShow="sideWidth===200"></layout-header>
         </el-header>
         <el-container class="main" :style='{height: clientHeight + "px"}'>
             <el-aside :width="sideWidth+'px'">

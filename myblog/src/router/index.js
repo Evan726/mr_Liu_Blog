@@ -43,7 +43,7 @@ export const asyncRouterMap = [{
         path: '',
         component: _import('svg-icons/index'),
         name: 'icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
+        meta: { title: 'icons', icon: 'icon'}
     }]
 }, {
     path: '/components',
@@ -64,6 +64,30 @@ export const asyncRouterMap = [{
             component: _import('components/avatarUpload'),
             name: 'avatarUpload',
             meta: { title: '上传头像' }
+        }, {
+            path: '/components/form',
+            component: _import('Index'),
+            name: 'form',
+            meta: { title: '表单' },
+            redirect: "/components/form/element",
+            children: [{
+                path: 'element',
+                component: _import('components/form/element'),
+                name: 'icons',
+                meta: { title: 'icons', icon: 'icon'},
+                children: null
+            },
+            {
+                path: 'group',
+                component: _import('components/form/group'),
+                name: 'group',
+                meta: { title: 'group', icon: 'group' },
+                children: null
+            }]
         },
     ]
 }]
+
+
+
+

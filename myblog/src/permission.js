@@ -4,10 +4,8 @@ import NProgress from 'nprogress' // 导入全站进度条插件
 import 'nprogress/nprogress.css' // 导入全站进度条插件样式
 import { getToken } from './utils/auth'
 const whiteList = ['/login', "/404"] // 白名单
-import { asyncRouterMap, constantRouterMap } from '@/router'
 router.beforeEach((to, from, next) => {
     NProgress.start() // 开始加载进度条
-    console.log('store.getters.addRouters',store.getters.addRouters,"------------",asyncRouterMap)
     //判断登陆状态
     if (getToken()) {
         //登录成功
@@ -18,15 +16,8 @@ router.beforeEach((to, from, next) => {
             if (store.getters.name === '') {
                 store.dispatch("GetUserInfo", getToken()).then(res => {
                     store.dispatch('GenerateRoutes').then((response) => {
-                        
-                        console.log('store.getters.addRouters',store.getters.addRouters,"------------",asyncRouterMap)
-
-
                         router.addRoutes(store.getters.addRouters)
                         //router.addRoutes(asyncRouterMap)
-                        //
-                        //
-                        console.log('-----2---',router)
                         if (to.path === "/") {
                             next({ path: '/home' })
                         } else {
@@ -38,7 +29,6 @@ router.beforeEach((to, from, next) => {
                             next({ path: '/login' })
                         })
                     })
-
                 }).catch(error => {
                     next({ path: '/login' })
                 })

@@ -9,6 +9,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './mock' // 导入模拟数据
 import './permission' // 路由守卫
+import '@/icons/index'
 Vue.config.productionTip = false
 
 // Vue.use(Vuex)

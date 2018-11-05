@@ -1,6 +1,6 @@
 <template>
     <el-menu :default-active="$route.path" class="el-menu-vertical-demo" background-color="#20222A" text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="false" :style="{height: clientHeight + 'px'}" :router="true">
-        <sidebar-item :data="routers"></sidebar-item>
+        <sidebar-item :data="routers" :isShow="isCollapse"></sidebar-item>
     </el-menu>
 </template>
 <script>

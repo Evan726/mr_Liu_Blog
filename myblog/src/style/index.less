@@ -1,5 +1,4 @@
 @import '_base.less';
-@import 'layout.less';
 @import 'login.less';
 @import 'theme.less';
 
@@ -37,7 +36,6 @@ body {
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
-    border-bottom: 1px solid #f2f2f2;
 }
 
 .p15 {
@@ -47,3 +45,23 @@ body {
 .form_container{
     padding-bottom:0
 }
+
+.conrainer_main{
+    padding:15px;
+}
+
+
+.card_panel{
+    margin-bottom: 15px;
+    .card_panel_title{
+        padding:6px 15px;
+        height:34px;
+        line-height:34px;
+        border-bottom:1px solid #f2f2f2;
+    }
+    .card_panel_container{
+        padding:15px;
+    }
+}
+
+@import 'layout.less';

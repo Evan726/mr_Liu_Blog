@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <el-button type="primary">上传头像</el-button>
-        
+    <div class="hello">
+        <el-button type="primary">编辑器</el-button>
     </div>
 </template>
 <script>
